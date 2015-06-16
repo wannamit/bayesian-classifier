@@ -1,5 +1,5 @@
-from mode import Mode
-from status import Status
+#!/usr/bin/python3
+
 from db import Db
 
 class Reset(Mode):

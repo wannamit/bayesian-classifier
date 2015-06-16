@@ -1,4 +1,4 @@
 import sys
 
-args = sys.arg
-print(args)
+args = sys.argv
+print(len(args))
