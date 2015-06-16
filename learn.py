@@ -1,34 +1,39 @@
+#!/usr/bin/python3
+
 from db import Db
 from mode import Mode
 from words import list_to_dict
 from words import text_to_list
+import sys
 
-class Learn(Mode):
+
+class Learn:
+	def initialize(self, args):
+		self.doc_type = args[2]
+		self.doc_file = args[3]
+
 	def validate(self, args):
-		valid_args = False
-		usage = 'Usage: %s learn <doc type> <file> <count>' % args[0]
+		# valid_args = False
+		# usage = 'Usage: %s learn <doc type> <file>' % args[0]
 
-		if len(args) == 5:
-			doc_type = args[2]
-			
-			file_contents = None
-			try:
-				file_contents = open(args[3], 'r').read()
-			except Exception as e:
-				raise ValueError(usage + '\nUnable to read specified file "%s", the error message was: %s' % (args[3], e))
+		if len(args) == 4:
 
-			count = 0
-			try:
-				count = int(args[4])
-			except:
-				raise ValueError(usage + '\nEnter an integer value for the "count" parameter')			
-
-			self.file_contents = file_contents
-			self.count = count
-			self.doc_type = doc_type
+			initialize(args)
 
 		else:
-			raise ValueError(usage)				
+
+			self.doc_type = input("Enter doc_type: ")
+			self.doc_file = input("Enter doc/file path: ")
+
+		self.file_contents = None
+		
+		try:
+			self.file_contents = open(self.doc_file, 'r').read()
+			
+		except Exception as e:
+			raise ValueError(usage + '\nUnable to read specified file "%s", the error message was: %s' % (self.doc_file, e))
+
+		self.count = len(self.file_contents)
 
 	def execute(self):
 		db = Db()

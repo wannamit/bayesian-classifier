@@ -30,6 +30,7 @@ class Classify(Mode):
 			raise ValueError('Please enter two different doctypes')
 
 		d = Db().get_doctype_counts()
+		
 		if doctype1 not in d.keys():
 			raise ValueError('Unknown doctype: ' + doctype1)
 
