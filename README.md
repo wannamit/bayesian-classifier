@@ -9,7 +9,7 @@ Training
 
 To train the utility, use the following command:
 
-    python bayes.py learn <doctype> <file> <count>
+    python bayes.py learn <doctype> <file>
 
 + The *doctype* argument can be any non-empty value - this is just the name you have chosen for the type of document that you are showing to the classifier
 + The *file* argument indicates the location of the file containing the training data that you wish to use
@@ -17,8 +17,8 @@ To train the utility, use the following command:
 
 For example:
 
-    python bayes.py learn spam all_my_spam.txt 10000
-    python bayes.py learn ham inbox.txt 10000
+    python bayes.py learn spam all_my_spam.txt
+    python bayes.py learn ham inbox.txt
 
 Classification
 --------------
