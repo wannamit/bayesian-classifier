@@ -1,12 +1,13 @@
 #!/usr/bin/python3
 
 import sys
+from pdb import set_trace
 
 if __name__ == '__main__':
 	try:
 
 		args = sys.argv
-		usage = 'Usage: python3 bayes.py learn <file> <doc_type> \n python3 bayes.py classify <file> <doc_type1> <doc_type2>' % (args[0], '|'.join(modes.keys()))
+		usage = 'Usage: python3 bayes.py learn <file> <doc_type> \n python3 bayes.py classify <file> <doc_type1> <doc_type2>'
 
 		if (len(args) < 2):
 			raise ValueError(usage)
@@ -14,17 +15,21 @@ if __name__ == '__main__':
 		modes = ['learn', 'classify']
 		mode_name = args[1].lower()
 
-		if lower(mode_name) not in modes:
+		if mode_name not in modes:
 			raise ValueError(usage + '\nUnrecognised mode: ' + mode_name)
 		
-		if mode_name is 'learn':
-			from learn import Learn as modes
+		print(mode_name)
+		if mode_name == 'learn':
+			print("learn")
+			from learn import Learn as M
 		else:
-			from classify import Classify as modes
+			print("Classify")
+			from classify import Classify as M
 		
-		mode = modes()
+		mode = M()
 		mode.validate(args)
 		mode.output(mode.execute())
+
 		
 	except Exception as ex:
-		print ex
+		print(ex)

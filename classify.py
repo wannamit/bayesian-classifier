@@ -2,8 +2,9 @@
 
 from db import Db
 from words import text_to_list
+from pdb import set_trace
 
-class Classify(Mode):
+class Classify():
 	MIN_WORD_COUNT = 5
 	RARE_WORD_PROB = 0.5
 	EXCLUSIVE_WORD_PROB = 0.99
@@ -52,7 +53,7 @@ class Classify(Mode):
 			self.set_doc_types(doc_type1, doc_type2)
 
 
-	def p_for_word(self, db, word):
+	def prob_4_word(self, db, word):
 		total_word_count = self.doc_type1_word_count + self.doc_type2_word_count
 
 		word_count_doc_type1 = db.get_word_count(self.doc_type1, word)
@@ -102,12 +103,12 @@ class Classify(Mode):
 		self.doc_type2_word_count = db.get_words_count(self.doc_type2)
 
 		for word in self.words:
-			p = self.p_for_word(db, word)
+			p = self.prob_4_word(db, word)
 			pl.append(p)
 
-		result = self.p_from_list(pl)
+		result = self.prob_4_list(pl)
 
 		return result
 
 	def output(self, result):
-		print 'Probability that document is %s rather than %s is %1.2f' % (self.doc_type1, self.doc_type2, result)
+		print ('Probability that document is {} rather than {} is {}'.format(self.doc_type1, self.doc_type2, result))

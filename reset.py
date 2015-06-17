@@ -2,7 +2,7 @@
 
 from db import Db
 
-class Reset(Mode):
+class Reset():
 	def validate(self, args):
 		if len(args) != 2:
 			raise ValueError('Usage: %s reset' % args[0])
@@ -12,4 +12,4 @@ class Reset(Mode):
 		Status().execute()
 
 	def output(self, _):
-		print 'Reset Complete'
+		print('Reset Complete')

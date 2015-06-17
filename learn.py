@@ -1,11 +1,10 @@
 #!/usr/bin/python3
 
 from db import Db
-from mode import Mode
 from words import list_to_dict
 from words import text_to_list
 import sys
-
+from pdb import set_trace
 
 class Learn:
 	def initialize(self, args):
@@ -18,7 +17,7 @@ class Learn:
 
 		if len(args) == 4:
 
-			initialize(args)
+			self.initialize(args)
 
 		else:
 
@@ -29,19 +28,19 @@ class Learn:
 		
 		try:
 			self.file_contents = open(self.doc_file, 'r').read()
-			
 		except Exception as e:
 			raise ValueError(usage + '\nUnable to read specified file "%s", the error message was: %s' % (self.doc_file, e))
 
-		self.count = len(self.file_contents)
+		self.count = len(open(self.doc_file, 'r').readlines())
+
 
 	def execute(self):
 		db = Db()
-		l = text_to_list(self.file_contents)
-		d = list_to_dict(l)
-		db.update_word_counts(d, self.doc_type)
+		text_list = text_to_list(self.file_contents)
+		text_dict = list_to_dict(text_list)
+		db.update_word_counts(text_dict, self.doc_type)
 		db.update_doctype_count(self.count, self.doc_type)
 		return self.count
 
 	def output(self, _):
-		print "Processed %s documents of type '%s'" % (self.count, self.doc_type)
+		print("Processed {} documents of type '{}'".format(self.count, self.doc_type))

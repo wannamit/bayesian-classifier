@@ -1,6 +1,7 @@
 #!/usr/bin/python3
 
 import sqlite3
+from pdb import set_trace
 
 '''
 create table word(word, doctype, count);
@@ -44,7 +45,7 @@ class Db:
 			c.close()
 			self.conn.commit()
 
-	def get_doctype_counts(self):
+	def get_doc_type_counts(self):
 		counts = {}
 		c = self.conn.cursor()
 		try:
@@ -88,7 +89,7 @@ class Db:
 	def update_doctype_count(self, num_new_ads, doctype):
 		c = self.conn.cursor()
 		try:
-			counts = self.get_doctype_counts()
+			counts = self.get_doc_type_counts()
 			if counts.has_key(doctype):
 				current_count = counts[doctype]
 			else:
