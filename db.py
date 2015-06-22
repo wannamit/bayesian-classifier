@@ -90,7 +90,7 @@ class Db:
 		c = self.conn.cursor()
 		try:
 			counts = self.get_doc_type_counts()
-			if counts.has_key(doctype):
+			if doctype in counts:
 				current_count = counts[doctype]
 			else:
 				current_count = 0

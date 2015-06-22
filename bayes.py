@@ -7,7 +7,7 @@ if __name__ == '__main__':
 	try:
 
 		args = sys.argv
-		usage = 'Usage: python3 bayes.py learn <file> <doc_type> \n python3 bayes.py classify <file> <doc_type1> <doc_type2>'
+		usage = 'Usage: python3 learn.py <file> <doc_type> \n python3 bayes.py classify <file> <doc_type1> <doc_type2>'
 
 		if (len(args) < 2):
 			raise ValueError(usage)

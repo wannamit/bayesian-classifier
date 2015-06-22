@@ -12,21 +12,16 @@ def list_to_dict(word_list):
 
 def add_list_to_dict(word_list, text_dict):
 	for word in word_list:
-		try:
+		if word in text_dict:
 			text_dict[word] += 1
-		except:
+		else:
 			text_dict[word] = 1
 
 def text_to_list(text):
-	# cleaned_words = map(cleanUpWord, re.split('\W+', text.strip()))
-	# print(list(cleaned_words))
-	# return filter(lambda word : word and (len(word) > 0), cleaned_words)
 
 	text = re.split('\W+', text.strip())
 	for word in text:
-		if (len(word) < 2 or word.isdigit()):
-			continue
-		elif word in commonWords:
+		if (len(word) < 2 or word.isdigit() or word in commonWords):
 			text.remove(word)
 
 	return text

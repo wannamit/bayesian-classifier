@@ -11,7 +11,7 @@ class Classify():
 
 	def set_text(self, text):
 		words = text_to_list(text)
-
+		# set_trace()
 		if not len(words):
 			raise ValueError('Text did not contain any valid words')
 
@@ -21,10 +21,11 @@ class Classify():
 	def set_file_name(self, file_name):
 		try:
 			file_contents = open(file_name, 'r').read()
+			# set_trace()
 			return self.set_text(file_contents)
 
 		except Exception as e:
-			raise ValueError('Unable to read specified file "%s", the error message was: %s' % (file_name, e))
+			raise ValueError('Unable to read specified file "{}", the error message was: {}'.format(file_name, e))
 
 	def set_doc_types(self, doc_type1, doc_type2):
 		if doc_type1 == doc_type2:
